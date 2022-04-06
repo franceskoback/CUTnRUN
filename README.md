@@ -19,4 +19,6 @@ For all of these steps, you will need to run the python script for the step, and
 
   - **Script 3**
       - Call [SEACR](https://github.com/FredHutch/SEACR)
+
+Rest of pipeline in development 
      
