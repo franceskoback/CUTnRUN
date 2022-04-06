@@ -10,7 +10,7 @@ from tabulate import tabulate
 seacr_path = sys.argv[1] # path/to/SEACR_1.3.sh
 bedgraphs_folder = sys.argv[2] # Path to bedgraphs 
 output_folder = sys.argv[3] # Output folder to store results and resulting bash script this script generates 
-igg_control = sys.argv[4] # "y" or "n" if there is an igg control
+igg_control = sys.argv[4] # "y" or "n" if there is an igg control -- todo: "n" will become numberic threshold to return top n fraction of peaks 
 
 
 # Change Directories to Bedgraphs Folder
