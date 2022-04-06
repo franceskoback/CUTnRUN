@@ -22,10 +22,10 @@ python 03_SEACR.py "/Users/fkoback/software/SEACR/SEACR_1.3.sh" "/Users/fkoback/
 
   - **Script 3**
       - Call [SEACR](https://github.com/FredHutch/SEACR)
-      - Argument 1: path to SEACR
-      - Argument 2: path to data folder containing bedgraphs
-      - Argument 3: path to folder where you want to store your results (and bash script this python script generates)
-      - Argument 4: "y" or "n"-- "y" if there is an igg control 
+      - **Argument 1**: path to SEACR
+      - **Argument 2**: path to data folder containing bedgraphs
+      - **Argument 3**: path to folder where you want to store your results (and bash script this python script generates)
+      - **Argument 4**: "y" or "n"-- "y" if there is an igg control 
 
 Rest of pipeline in development 
      
