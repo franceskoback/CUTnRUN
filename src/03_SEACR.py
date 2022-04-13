@@ -6,14 +6,14 @@ import numpy as np
 import pandas as pd
 from tabulate import tabulate
 
-# read in input arguments that are required
-seacr_path			= sys.argv[1] # where is seacr.py located? <path>/SEACR-1.1/SEACR_1.1.sh
-bedgraphs_folder	= sys.argv[2] # where are the normalized bed_files <path>/02_bam_processing_v1
-output_folder			= sys.argv[3] # where to put the called peaks? <path>/03_peak_calling_v1beds
-igg_control = sys.argv[4]
-#chrom_sizes_txt			= sys.argv[4] # path and anem of the chormosome sies text file needed for the bed converstion <path>/hg38.chrom.sizes
+# Read in Input Arguments
+seacr_path = sys.argv[1] # path/to/SEACR_1.3.sh
+bedgraphs_folder = sys.argv[2] # Path to bedgraphs 
+output_folder = sys.argv[3] # Output folder to store results and resulting bash script this script generates 
+igg_control = sys.argv[4] # "y" or "n" if there is an igg control -- todo: "n" will become numberic threshold to return top n fraction of peaks 
 
-# Move to the folder with the saved bam and stats files
+
+# Change Directories to Bedgraphs Folder
 os.chdir(bedgraphs_folder)
 
 if igg_control=="y":
@@ -23,7 +23,8 @@ if igg_control=="y":
             igg_bedgraphs.append(bedgraphs_folder+ "/" +file_name)
     igg_bedgraphs.sort()
     
-
+## TO DO : make this script work if there is no igg control
+# (Use a numeric threshold n between 0 and 1 to return the top n fraction of peaks based on total signal within peaks) 
 
 # Grouping the Nuclei Data
 nuclei_bedgraphs = []
