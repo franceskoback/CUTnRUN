@@ -31,6 +31,8 @@ python 03_SEACR.py "/Users/fkoback/software/SEACR/SEACR_1.3.sh" "/Users/fkoback/
       - **04_Annotation.py Argument 1**: path to data containing bed file outputs from SEACR (*relaxed.bed and *stringent.bed)
       - **04_Annotation.R** run in RStudio or R to generate plots 
 
+  - **Script 5: Homer Motifs**
+      - **05_Motifs.py** 
 - **Script 5: Homer Motifs**
       - **05_Motifs.py**: lets see if this tab works   
       - **05_Motifs.py**: make sure you have genome downloaded (ie perl /opt/anaconda3/envs/python385/share/homer-4.10-0/.//configureHomer.pl -install mm10
