@@ -48,5 +48,4 @@ For all of these steps, you will need to run the python script for the step, and
       - **Download Bedops** https://bedops.readthedocs.io/en/latest/content/installation.html
       - **Note**: change path names in R script to match your environment 
 
-
-Rest of pipeline in development 
+Polishing in progress to make it reproducible in other compute environments!  
