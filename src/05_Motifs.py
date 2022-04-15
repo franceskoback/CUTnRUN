@@ -33,6 +33,10 @@ os.chdir( output_directory )
 # save commands to the output script
 script_name = "04_cut_n_run_homer_motifs_v1beds.sh"
 output_script = open( script_name, 'w' )
+for sample_counter in range(len(peak_beds)):
+    if not os.path.exists(output_directory+peak_beds[sample_counter].split("/")[-1].split("_R1")[0]):
+        os.makedirs(output_directory+peak_beds[sample_counter].split("/")[-1].split("_R1")[0])
+        #print(output_directory+peak_beds[sample_counter].split("/")[-1].split("_R1")[0])
 
 # for each file re-arrange to make in the format for Homer to call peaks
 for sample_counter in range(len(peak_beds)):
@@ -40,11 +44,14 @@ for sample_counter in range(len(peak_beds)):
 	output_command = "echo \"Running Motif Discovery on " +peak_beds[sample_counter].split("/")[-1].split("_R1")[0]+ "\""
 	output_script.write(output_command)
 	output_script.write("\n")
-	# call Homer motif discovery
-	output_command = "findMotifsGenome.pl " +peak_beds[sample_counter]+ " mm10 ./" +peak_beds[sample_counter].split("/")[8][:-35]+ "_given -size given -mask -p 20 -S 50"
+	output_command = "cd " + output_base_dir + "/" + peak_beds[sample_counter].split("/")[-1].split("_R1")[0]
 	output_script.write(output_command)
 	output_script.write("\n")
-	output_command = "indMotifsGenome.pl " +peak_beds[sample_counter]+ " mm10 ./" +peak_beds[sample_counter].split("/")[8][:-35]+ " -size 50,100,200 -mask -p 20 -S 50"
+	# call Homer motif discovery
+	output_command ="findMotifsGenome.pl " +peak_beds[sample_counter]+ " mm10 ./" +peak_beds[sample_counter].split("/")[8][:-35]+ "_given -size given -mask -p 20 -S 50"
+	output_script.write(output_command)
+	output_script.write("\n")
+	output_command = "findMotifsGenome.pl " +peak_beds[sample_counter]+ " mm10 ./" +peak_beds[sample_counter].split("/")[8][:-35]+ " -size 50,100,200 -mask -p 20 -S 50"
 	output_script.write(output_command)
 	output_script.write("\n\n\n")
 
