@@ -35,5 +35,9 @@ python 03_SEACR.py "/Users/fkoback/software/SEACR/SEACR_1.3.sh" "/Users/fkoback/
       - **05_Motifs.py** make sure you have genome downloaded (ie perl /opt/anaconda3/envs/python385/share/homer-4.10-0/.//configureHomer.pl -install mm10
       - **Note**: make sure beds are in correct Homer format. The script "check_bed_format.py" makes sure the bed files are tab-delimited and allows you to change them to be tab-delimited if they are space delimited instead
 
+  - **Script 6: Meme Motifs**
+      - **Download Bedops** https://bedops.readthedocs.io/en/latest/content/installation.html
+      - **Note**: change path names in R script to match your environment 
+
 
 Rest of pipeline in development 
