@@ -35,4 +35,5 @@ python 03_SEACR.py "/Users/fkoback/software/SEACR/SEACR_1.3.sh" "/Users/fkoback/
       - **05_Motifs.py**: make sure you have genome downloaded (ie perl /opt/anaconda3/envs/python385/share/homer-4.10-0/.//configureHomer.pl -install mm10
       - **Note** Make sure beds are in correct Homer format. The script "check_bed_format.py" makes sure the bed files are tab-delimited and allows you to change them to be tab-delimited if they are space delimited instead
 
+
 Rest of pipeline in development 
