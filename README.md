@@ -11,7 +11,7 @@ For all of these steps, you will need to run the python script for the step, and
 - python **03_SEACR.py** "/Users/fkoback/software/SEACR/SEACR_1.3.sh" "/Users/fkoback/Documents/Projects/CUTnRUN/data"  "/Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks" "y"
 - python **04_Annotation.py** "/Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks/results_3_calledpeaks"
 
-- run **04_Annotation.R **
+- run **04_Annotation.R**
 
 - python **05_Motifs.py** /Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks/relaxed_beds relaxed.bed /Users/fkoback/Documents/Projects/CUTnRUN/04_peak_motifs_v1beds
 
