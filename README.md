@@ -27,7 +27,7 @@ python 03_SEACR.py "/Users/fkoback/software/SEACR/SEACR_1.3.sh" "/Users/fkoback/
       - **Argument 3**: path to folder where you want to store your results (and bash script this python script generates)
       - **Argument 4**: "y" or "n"-- "y" if there is an igg control 
 
-  - **Script 4: Annotation**
+  - **Script 4 Annotation**
       - **04_Annotation.py Argument 1**: path to data containing bed file outputs from SEACR (*relaxed.bed and *stringent.bed)
       - **04_Annotation.R** run in RStudio or R to generate plots 
 
