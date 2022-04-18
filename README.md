@@ -15,7 +15,7 @@ For all of these steps, you will need to run the python script for the step, and
 
 - python **05_HomerMotifs.py** /Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks/relaxed_beds relaxed.bed /Users/fkoback/Documents/Projects/CUTnRUN/05_homer_peak_motifs
 
-- Run **05_MemeMotifs.R**
+- Run **06_MemeMotifs.R**
 
 ## Steps of Analysis (and to-dos for development)
   
