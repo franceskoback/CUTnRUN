@@ -13,7 +13,7 @@ For all of these steps, you will need to run the python script for the step, and
 
 - run **04_Annotation.R**
 
-- python **05_HomerMotifs.py** /Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks/relaxed_beds relaxed.bed /Users/fkoback/Documents/Projects/CUTnRUN/04_peak_motifs_v1beds
+- python **05_HomerMotifs.py** /Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks/relaxed_beds relaxed.bed /Users/fkoback/Documents/Projects/CUTnRUN/05_peak_motifs_v1beds
 
 - Run **05_MemeMotifs.R**
 
