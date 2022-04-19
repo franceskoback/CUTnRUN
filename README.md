@@ -13,7 +13,7 @@ For all of these steps, you will need to run the python script for the step, and
 - python3 **01_cut_n_run_pairedReads_filter_align.py** "cells_FLAG_S4" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R1_001.fastq" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R2_001.fastq" 8 "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results"
 - python3 **02_cut_n_run_bamToBed_normalize_SEACRPrepv1.py** "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results_2_normalizedbeds" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/mm10.chrom.sizes.txt"
 - python **03_SEACR.py** "/wynton/home/srivastava/franceskoback/software/SEACR/SEACR_1.3.sh" "/Users/fkoback/Documents/Projects/CUTnRUN/data"  "/Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks" "y"
-- **or** python **03_SEACR.py** "/Users/fkoback/software/SEACR/SEACR_1.3.sh" "/wynton/group/gladstone/users/franceskoback/CUTnRUN/data"  "/wynton/group/gladstone/users/franceskoback/CUTnRUN/data/results_3_calledpeaks" "y"
+- **or** python **03_SEACR.py** "/Users/fkoback/software/SEACR/SEACR_1.3.sh" "/wynton/group/gladstone/users/franceskoback/CUTnRUN/data"  "/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/3_calledpeaks" "y"
 - python **04_Annotation.py** "/Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks/results_3_calledpeaks"
 
 - run **04_Annotation.R**
