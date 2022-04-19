@@ -20,6 +20,7 @@ For all of these steps, you will need to run the python script for the step, and
 - python **03_SEACR.py** "/Users/fkoback/software/SEACR/SEACR_1.3.sh" "/Users/fkoback/Documents/Projects/CUTnRUN/data"  "/Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks" "y"
 - **or** python **03_SEACR.py** "/wynton/home/srivastava/franceskoback/software/SEACR/SEACR_1.3.sh" "/wynton/group/gladstone/users/franceskoback/CUTnRUN/data"  "/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/3_calledpeaks" "y"
 - python **04_Annotation.py** "/Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks/results_3_calledpeaks"
+- or python **04_Annotation.py** "/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/3_calledpeaks"
 
 - run **04_Annotation.R**
 
