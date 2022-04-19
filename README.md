@@ -11,6 +11,7 @@ For all of these steps, you will need to run the python script for the step, and
 3. make results folder and folder for 3_calledpeaks within this folder 
 4. Run 3rd python script 
 5. nano that bash script output and put #!/usr/bin/env bash on top of bash script if submitting as job 
+6. Rename 03_SEACRcall.sh to three_SEACRcall.sh if submitting as a job-- TODO change this to be three, four, etc instead of starting with numbers
 
 ## Usage example: ##
 - python3 **01_cut_n_run_pairedReads_filter_align.py** "cells_FLAG_S4" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R1_001.fastq" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R2_001.fastq" 8 "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results"
