@@ -5,6 +5,10 @@ This repo will contain the code needed to run the CUT&RUN pipeline. Currently in
 
 For all of these steps, you will need to run the python script for the step, and then run the associated bash script that python script generates before moving onto the next step in the pipeline.
 
+### Steps to Install: ##
+1. Git clone this repository 
+2. copy your data into this repository or know where it is (cp -r /path/to/data ./data within this repo folder)
+
 ## Usage example: ##
 - python3 **01_cut_n_run_pairedReads_filter_align.py** "cells_FLAG_S4" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R1_001.fastq" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R2_001.fastq" 8 "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results"
 - python3 **02_cut_n_run_bamToBed_normalize_SEACRPrepv1.py** "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results_2_normalizedbeds" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/mm10.chrom.sizes.txt"
