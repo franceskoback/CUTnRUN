@@ -6,7 +6,7 @@ import sys
 # read in input arguments that are required
 peaks_dir				= sys.argv[1] # where is peak files are located <path>/03_peak_calling_v1beds
 beds_suffix	= sys.argv[2] # where are the normalized bed_files homerMotif.bed
-output_base_dir			= sys.argv[3] # base directory where to dump the identified motifs <path>/04_peak_motifs_v1beds
+output_base_dir			= sys.argv[3] # base directory where to dump the identified motifs <path>/05_HomerMotifs
 #homer_path= sys.argv[4] # path to Homer ie /path/to/Homer
 
 # Move to the folder with the saved bam and stats files
