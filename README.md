@@ -16,6 +16,8 @@ For all of these steps, you will need to run the python script for the step, and
 8. run 04_Annotation.py as shown below 
 9. make sure you have all packages downloaded in R (ChIPseeker,TxDb.Mmusculus.UCSC.mm10.knownGene, clusterProfiler,ReactomePA,tidyverse,ggupset, ggimage)
 10. change working directory in 04_Annotation.R : setwd("/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/3_calledpeaks")
+11. run "Rscript 04_Annotation.R" this will generate plots in the directory above. To move them to a new folder called "four_ChIPSeeker", do mv *.txt ../four_ChIPSeeker and mv *.png ../four_ChIPSeeker TODO: make a bash script to run 04_Annotation.py, 04_Annotation.R, and the above commands to move the outputs to the correct folder 
+12. 
 
 ## Usage example: ##
 - python3 **01_cut_n_run_pairedReads_filter_align.py** "cells_FLAG_S4" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R1_001.fastq" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R2_001.fastq" 8 "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results"
