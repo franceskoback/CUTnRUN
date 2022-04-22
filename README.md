@@ -30,6 +30,7 @@ For all of these steps, you will need to run the python script for the step, and
 - run **04_Annotation.R**
 
 - python **05_HomerMotifs.py** /Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks/relaxed_beds relaxed.bed /Users/fkoback/Documents/Projects/CUTnRUN/05_homer_peak_motifs
+- or **python 05_HomerMotifs.py** /wynton/group/gladstone/users/franceskoback/CUTnRUN/results/three_calledpeaks "relaxed.bed" /wynton/group/gladstone/users/franceskoback/CUTnRUN/results/five_HomerMotifs
 
 - Run **06_MemeMotifs.R**
 
