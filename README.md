@@ -17,7 +17,13 @@ For all of these steps, you will need to run the python script for the step, and
 9. make sure you have all packages downloaded in R (ChIPseeker,TxDb.Mmusculus.UCSC.mm10.knownGene, clusterProfiler,ReactomePA,tidyverse,ggupset, ggimage)
 10. change working directory in 04_Annotation.R : setwd("/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/3_calledpeaks")
 11. run "Rscript 04_Annotation.R" this will generate plots in the directory above. To move them to a new folder called "four_ChIPSeeker", do mv *.txt ../four_ChIPSeeker and mv *.png ../four_ChIPSeeker TODO: make a bash script to run 04_Annotation.py, 04_Annotation.R, and the above commands to move the outputs to the correct folder 
-12. TODO: change python script to connect to that specific Homer download if running on the server (if running in conda don't/ alternatively, run conda on server- look into this) 
+12. make a Homer folder in your software directory (or wherever you want to have it downloaded), navigate to that folder and type wet http://homer.ucsd.edu/homer/configureHomer.pl
+13. perl configureHomer.pl -install 
+14. PATH=$PATH:/wynton/home/srivastava/franceskoback/software/Homer/.//bin/
+15. perl /wynton/home/srivastava/franceskoback/software/Homer/.//configureHomer.pl -install mm10
+16. TODO: make it so the python 05_HomerMotifs.py doesn't make another homer_motifs folder within the five_results folder 
+17. run 5th python script 
+18. bash 04_cut_n_run_homer_motifs_v1beds.sh
 
 ## Usage example: ##
 - python3 **01_cut_n_run_pairedReads_filter_align.py** "cells_FLAG_S4" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R1_001.fastq" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R2_001.fastq" 8 "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results"
