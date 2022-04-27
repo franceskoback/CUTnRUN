@@ -25,7 +25,8 @@ For all of these steps, you will need to run the python script for the step, and
 17. run 5th python script 
 18. bash 04_cut_n_run_homer_motifs_v1beds.sh
 19. on wynton, do module load CBI bedops 
-20. 
+20. mkdir six_MemeMotifs in results folder 
+21. go to three_calledpeaks and make relaxed and stringent folders then do mv *.relaxed.bed ./relaxed and mv *.stringent.bed ./stringent-- TODO make this automatically happen after running third step  
 
 ## Usage example: ##
 - python3 **01_cut_n_run_pairedReads_filter_align.py** "cells_FLAG_S4" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R1_001.fastq" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R2_001.fastq" 8 "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results"
