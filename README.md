@@ -24,6 +24,8 @@ For all of these steps, you will need to run the python script for the step, and
 16. TODO: make it so the python 05_HomerMotifs.py doesn't make another homer_motifs folder within the five_results folder 
 17. run 5th python script 
 18. bash 04_cut_n_run_homer_motifs_v1beds.sh
+19. on wynton, do module load CBI bedops 
+20. 
 
 ## Usage example: ##
 - python3 **01_cut_n_run_pairedReads_filter_align.py** "cells_FLAG_S4" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R1_001.fastq" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R2_001.fastq" 8 "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results"
