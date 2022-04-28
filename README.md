@@ -31,7 +31,7 @@ For all of these steps, you will need to run the python script for the step, and
 23. navigate to 6th script in src folder and nano to change the path names at the top of the Rscript to match your paths-- including the path to the mm10 genome above  
 24. Make sure you're using R > 4.0 ( module load r/4.1.3 ) 
 25. Rscript 06_MemeMotifs.R (TODO: make this six_MemeMotifs.R)
-26. 
+
 
 
 
