@@ -137,3 +137,18 @@ for count in range(len(unfixed_bedgraphs)):
     output_command = "bash " +seacr_path+ " " +str(unfixed_bedgraphs[count])+ " " +str(igg_bedgraphs[0])+ " non stringent " + str(prefix)
     output_script.write(output_command)
     output_script.write("\n")
+
+output_script.write("\n\n")
+
+output_command="mkdir relaxed"
+output_script.write(output_command)
+output_script.write("\n")
+output_command="mkdir stringent"
+output_script.write(output_command)
+output_script.write("\n")
+output_command="mv *.relaxed.bed ./relaxed"
+output_script.write(output_command)
+output_script.write("\n")
+output_command="mv *.stringent.bed ./stringent"
+output_script.write(output_command)
+output_script.write("\n")
