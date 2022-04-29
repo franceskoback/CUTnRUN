@@ -16,14 +16,14 @@ For all of these steps, you will need to run the python script for the step, and
 8. run four_Annotation.py as shown below 
 9. make sure you have all packages downloaded in R (ChIPseeker,TxDb.Mmusculus.UCSC.mm10.knownGene, clusterProfiler,ReactomePA,tidyverse,ggupset, ggimage)
 10. change working directory in four_Annotation.R : setwd("/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/three_calledpeaks")
-12. run "Rscript 04_Annotation.R" this will generate plots in the directory above. To move them to a new folder called "four_ChIPSeeker", do mv *.txt ../four_ChIPSeeker and mv *.png ../four_ChIPSeeker DONE: make a bash script to run 04_Annotation.py, 04_Annotation.R, and the above commands to move the outputs to the correct folder 
-13. make a Homer folder in your software directory (or wherever you want to have it downloaded), navigate to that folder and type wet http://homer.ucsd.edu/homer/configureHomer.pl
+11. run "Rscript 04_Annotation.R" this will generate plots in the directory above. 
+12. To move them to a new folder called "four_ChIPSeeker", run bash script four_moveplots.sh 
+13. On initial run, to make a Homer folder in your software directory (or wherever you want to have it downloaded), navigate to that software folder and type wet http://homer.ucsd.edu/homer/configureHomer.pl
 14. perl configureHomer.pl -install 
 15. PATH=$PATH:/wynton/home/srivastava/franceskoback/software/Homer/.//bin/
 16. perl /wynton/home/srivastava/franceskoback/software/Homer/.//configureHomer.pl -install mm10
-17. DONE: make it so the python 05_HomerMotifs.py doesn't make another homer_motifs folder within the five_results folder 
 18. run 5th python script 
-19. bash 04_cut_n_run_homer_motifs_v1beds.sh
+19. bash five_cut_n_run_homer_motifs_v1beds.sh
 20. on wynton, do module load CBI bedops 
 21. mkdir six_MemeMotifs in results folder 
 22. go to three_calledpeaks and make relaxed and stringent folders then do mv *.relaxed.bed ./relaxed and mv *.stringent.bed ./stringent-- DONE make this automatically happen after running third step 
