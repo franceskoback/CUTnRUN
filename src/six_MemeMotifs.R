@@ -5,7 +5,7 @@ library(tidyverse)
 input_beds_directory <- "/Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks/relaxed_beds"
 input_beds_suffix <- "relaxed.bed$"
 output_directory <- "/Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks/relaxed_beds"
-output_script_name <- "04_cut_n_run_meme_motifs_v1beds.sh"
+output_script_name <- "six_mememotifs.sh"
 genome_sequence <- "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/mm10.fa"
 
 # make working directory for intermediate files
@@ -55,7 +55,7 @@ summit_files <- list.files( path = getwd(), pattern = ".peakSummits.bed",
                             full.names = TRUE )
 
 # start output bash script to run
-sink( file = "four-one_bedops_rangePad.sh", append = FALSE, type = "output", split = FALSE )
+sink( file = "six-one_bedops_rangePad.sh", append = FALSE, type = "output", split = FALSE )
 cat(paste("#!/bin/bash"))
 cat(paste("\n"))
 
@@ -76,7 +76,7 @@ for(current_file_num in 1:length(summit_files)) {
 sink()
 
 # run the bedops scrips
-system("bash ./four-one_bedops_rangePad.sh")
+system("bash ./six-one_bedops_rangePad.sh")
 
 
 # for all the padded summit files, run getFasta to generate file for meme
@@ -84,7 +84,7 @@ padded_files <- list.files( path = getwd(), pattern = ".paddedSummit.bed",
                             full.names = TRUE )
 
 # start output bash script to run
-sink( file = "four-two_bedtools_getFasta.sh", append = FALSE, type = "output", split = FALSE )
+sink( file = "six-two_bedtools_getFasta.sh", append = FALSE, type = "output", split = FALSE )
 cat(paste("#!/bin/bash"))
 cat(paste("\n"))
 
@@ -105,4 +105,4 @@ for(current_file_num in 1:length(padded_files)) {
 sink()
 
 # run the bedtools script
-system("bash ./four-two_bedtools_getFasta.sh")
+system("bash ./six-two_bedtools_getFasta.sh")
