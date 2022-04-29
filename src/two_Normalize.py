@@ -70,7 +70,7 @@ if len(mapped_stats_files)>1:
         # split the 7th row by whitespace to pull out just the number of reads and save
         mapped_reads_per_file[sample_counter][1] = sc_file_reads[0][0].split()[1]
         # calculate scaling factor which will be used for scaling all the counts at each bp position when normalizing
-        # based on https://github.com/Henikoff/Cut-and-Run/blob/master/spike_in_calibration.sh
+        # based on https://github.com/Henikoff/Cut-and-Run/blob/master/spike_in_calibration
         # scale * (primary_genome_mapped_count_at_bp)/(spike-in_genome_total_of_mapped_fragments)
         # since paired end, # fragments = # mapped reads / 2
         mapped_reads_per_file[sample_counter][2] = 10000000 / ( int(mapped_reads_per_file[sample_counter][0]) / 2 )
@@ -101,7 +101,7 @@ reads_norm_factor_file.close()
 
 # start saving output script
 os.chdir( normalized_beds_folder )
-script_name = "02_cut_n_run_bamToBed_normalize.sh"
+script_name = "two_cut_n_run_bamToBed_normalize.sh"
 output_script = open( script_name, 'w' )
 
 # convert each bam to a bed file as recommended by https://github.com/FredHutch/SEACR
