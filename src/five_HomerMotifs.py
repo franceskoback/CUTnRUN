@@ -21,7 +21,7 @@ for file_name in listdir():
 peak_beds.sort()
 
 # folders/programs to be used for initializing the script
-output_directory		=	output_base_dir+ "/homer_motifs/"
+output_directory		=	output_base_dir
 
 # create output directories if don't exists
 if not os.path.exists(output_directory):
