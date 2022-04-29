@@ -31,7 +31,7 @@ if not os.path.exists(output_directory):
 os.chdir( output_directory )
 
 # save commands to the output script
-script_name = "04_cut_n_run_homer_motifs_v1beds.sh"
+script_name = "four_cut_n_run_homer_motifs_v1beds.sh"
 output_script = open( script_name, 'w' )
 for sample_counter in range(len(peak_beds)):
     if not os.path.exists(output_directory+peak_beds[sample_counter].split("/")[-1].split("_R1")[0]):
