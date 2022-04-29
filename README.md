@@ -7,14 +7,13 @@ For all of these steps, you will need to run the python script for the step, and
 
 ### Steps to Install: ##
 1. Git clone this repository 
-2. make results and data directories in this folder 
+2. make results and data directories within this folder 
 3. copy your data into this repository or know where it is (cp -r /path/to/data ./data within this repo folder)
-4. make folder for 3_calledpeaks within this folder 
-5. Run 3rd python script 
-6. nano that bash script output and put #!/usr/bin/env bash on top of bash script if submitting as job 
-7. Rename 03_SEACRcall.sh to three_SEACRcall.sh if submitting as a job-- DONE change this to be three, four, etc instead of starting with numbers
-8. qsub -cwd -pe smp 12 -l mem_free=12G -l scratch=1000G -l h_rt=50:00:00 -m bea -M frances.koback@gladstone.ucsf.edu three_SEACRcall.sh
-9. run 04_Annotation.py as shown below 
+4. Run 3rd python script 
+5. nano that bash script output and put #!/usr/bin/env bash on top of bash script if submitting as job 
+6. Rename 03_SEACRcall.sh to three_SEACRcall.sh if submitting as a job-- DONE change this to be three, four, etc instead of starting with numbers
+7. qsub -cwd -pe smp 12 -l mem_free=12G -l scratch=1000G -l h_rt=50:00:00 -m bea -M frances.koback@gladstone.ucsf.edu three_SEACRcall.sh
+8. run 04_Annotation.py as shown below 
 10. make sure you have all packages downloaded in R (ChIPseeker,TxDb.Mmusculus.UCSC.mm10.knownGene, clusterProfiler,ReactomePA,tidyverse,ggupset, ggimage)
 11. change working directory in 04_Annotation.R : setwd("/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/3_calledpeaks")
 12. run "Rscript 04_Annotation.R" this will generate plots in the directory above. To move them to a new folder called "four_ChIPSeeker", do mv *.txt ../four_ChIPSeeker and mv *.png ../four_ChIPSeeker DONE: make a bash script to run 04_Annotation.py, 04_Annotation.R, and the above commands to move the outputs to the correct folder 
