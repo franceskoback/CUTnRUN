@@ -54,7 +54,7 @@ unfixed_bedgraphs.sort()
 os.chdir( output_folder )
 
 # save commands to the output script
-script_name = "03_SEACRcall.sh"
+script_name = "three_SEACRcall.sh"
 output_script = open( script_name, 'w' )
 
 # move to the output directory
