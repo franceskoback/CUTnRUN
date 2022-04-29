@@ -8,6 +8,7 @@ from tabulate import tabulate
 
 # Import Required Packages
 normalized_beds_folder	= sys.argv[1]
+output_folder = sys.argv[2]
 
 os.chdir( normalized_beds_folder )
 
@@ -25,4 +26,12 @@ for file in os.listdir():
   
         # call read text file function
         add_chr_to_bed_file(file_path)
+
+
+# Move to the output folder
+os.chdir( output_folder )
+
+# save commands to the output script
+script_name = "four_moveplots.sh"
+output_script = open( script_name, 'w' )
         
