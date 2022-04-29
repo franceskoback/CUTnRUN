@@ -11,7 +11,9 @@ normalized_beds_folder	= sys.argv[1]
 output_folder = sys.argv[2]
 
 os.chdir( normalized_beds_folder )
-
+# create output directories if don't exist
+if not os.path.exists(output_folder):
+	os.makedirs(output_folder)
 
 def add_chr_to_bed_file(file_path):
     df = pd.read_csv(file_path,sep='\t',header=None)
@@ -34,4 +36,15 @@ os.chdir( output_folder )
 # save commands to the output script
 script_name = "four_moveplots.sh"
 output_script = open( script_name, 'w' )
-        
+command= "cd " + normalized_beds_folder
+output_script.write(command)
+output_script.write("\n")
+
+commnand= "mv *.txt " + output_folder
+output_script.write(command)
+output_script.write("\n")
+
+commnand= "mv *.png " + output_folder
+output_script.write(command)
+output_script.write("\n")
+
