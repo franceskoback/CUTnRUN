@@ -5,7 +5,6 @@ library(tidyverse)
 input_beds_directory <- "/Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks/relaxed_beds"
 input_beds_suffix <- "relaxed.bed$"
 output_directory <- "/Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks/relaxed_beds"
-output_script_name <- "six_mememotifs.sh"
 genome_sequence <- "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/mm10.fa"
 
 # make working directory for intermediate files
