@@ -13,6 +13,10 @@ output_folder = sys.argv[3] # Output folder to store results and resulting bash 
 igg_control = sys.argv[4] # "y" or "n" if there is an igg control -- todo: "n" will become numberic threshold to return top n fraction of peaks 
 
 
+# create output directories if don't exist
+if not os.path.exists(output_folder):
+	os.makedirs(output_folder)
+
 # Change Directories to Bedgraphs Folder
 os.chdir(bedgraphs_folder)
 
