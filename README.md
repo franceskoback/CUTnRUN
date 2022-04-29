@@ -11,7 +11,7 @@ For all of these steps, you will need to run the python script for the step, and
 3. make results folder and folder for 3_calledpeaks within this folder 
 4. Run 3rd python script 
 5. nano that bash script output and put #!/usr/bin/env bash on top of bash script if submitting as job 
-6. Rename 03_SEACRcall.sh to three_SEACRcall.sh if submitting as a job-- TODO change this to be three, four, etc instead of starting with numbers
+6. Rename 03_SEACRcall.sh to three_SEACRcall.sh if submitting as a job-- DONE change this to be three, four, etc instead of starting with numbers
 7. qsub -cwd -pe smp 12 -l mem_free=12G -l scratch=1000G -l h_rt=50:00:00 -m bea -M frances.koback@gladstone.ucsf.edu three_SEACRcall.sh
 8. run 04_Annotation.py as shown below 
 9. make sure you have all packages downloaded in R (ChIPseeker,TxDb.Mmusculus.UCSC.mm10.knownGene, clusterProfiler,ReactomePA,tidyverse,ggupset, ggimage)
@@ -21,7 +21,7 @@ For all of these steps, you will need to run the python script for the step, and
 13. perl configureHomer.pl -install 
 14. PATH=$PATH:/wynton/home/srivastava/franceskoback/software/Homer/.//bin/
 15. perl /wynton/home/srivastava/franceskoback/software/Homer/.//configureHomer.pl -install mm10
-16. TODO: make it so the python 05_HomerMotifs.py doesn't make another homer_motifs folder within the five_results folder 
+16. DONE: make it so the python 05_HomerMotifs.py doesn't make another homer_motifs folder within the five_results folder 
 17. run 5th python script 
 18. bash 04_cut_n_run_homer_motifs_v1beds.sh
 19. on wynton, do module load CBI bedops 
@@ -30,7 +30,7 @@ For all of these steps, you will need to run the python script for the step, and
 22. go to your data folder and do wget http://hgdownload.cse.ucsc.edu/goldenpath/mm10/bigZips/mm10.fa.gz to download the mm10.fa genome  
 23. navigate to 6th script in src folder and nano to change the path names at the top of the Rscript to match your paths-- including the path to the mm10 genome above  
 24. Make sure you're using R > 4.0 ( module load r/4.1.3 ) 
-25. Rscript 06_MemeMotifs.R (TODO: make this six_MemeMotifs.R)
+25. Rscript 06_MemeMotifs.R (DONE: make this six_MemeMotifs.R)
 
 
 
