@@ -55,7 +55,7 @@ if not os.path.exists(logs_folder):
 # start actually doing work now
 os.chdir( aligned_folder )
 # start saving output script
-script_name = "01_cut_n_run_" +sample_id+ "_trim_align.sh"
+script_name = "one_cut_n_run_" +sample_id+ "_trim_align.sh"
 output_script = open( script_name, 'w' )
 
 # make output command write to file
