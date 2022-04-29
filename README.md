@@ -16,7 +16,7 @@ For all of these steps, you will need to run the python script for the step, and
 8. run 04_Annotation.py as shown below 
 9. make sure you have all packages downloaded in R (ChIPseeker,TxDb.Mmusculus.UCSC.mm10.knownGene, clusterProfiler,ReactomePA,tidyverse,ggupset, ggimage)
 10. change working directory in 04_Annotation.R : setwd("/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/3_calledpeaks")
-11. run "Rscript 04_Annotation.R" this will generate plots in the directory above. To move them to a new folder called "four_ChIPSeeker", do mv *.txt ../four_ChIPSeeker and mv *.png ../four_ChIPSeeker TODO: make a bash script to run 04_Annotation.py, 04_Annotation.R, and the above commands to move the outputs to the correct folder 
+11. run "Rscript 04_Annotation.R" this will generate plots in the directory above. To move them to a new folder called "four_ChIPSeeker", do mv *.txt ../four_ChIPSeeker and mv *.png ../four_ChIPSeeker DONE: make a bash script to run 04_Annotation.py, 04_Annotation.R, and the above commands to move the outputs to the correct folder 
 12. make a Homer folder in your software directory (or wherever you want to have it downloaded), navigate to that folder and type wet http://homer.ucsd.edu/homer/configureHomer.pl
 13. perl configureHomer.pl -install 
 14. PATH=$PATH:/wynton/home/srivastava/franceskoback/software/Homer/.//bin/
@@ -26,7 +26,7 @@ For all of these steps, you will need to run the python script for the step, and
 18. bash 04_cut_n_run_homer_motifs_v1beds.sh
 19. on wynton, do module load CBI bedops 
 20. mkdir six_MemeMotifs in results folder 
-21. go to three_calledpeaks and make relaxed and stringent folders then do mv *.relaxed.bed ./relaxed and mv *.stringent.bed ./stringent-- TODO make this automatically happen after running third step 
+21. go to three_calledpeaks and make relaxed and stringent folders then do mv *.relaxed.bed ./relaxed and mv *.stringent.bed ./stringent-- DONE make this automatically happen after running third step 
 22. go to your data folder and do wget http://hgdownload.cse.ucsc.edu/goldenpath/mm10/bigZips/mm10.fa.gz to download the mm10.fa genome  
 23. navigate to 6th script in src folder and nano to change the path names at the top of the Rscript to match your paths-- including the path to the mm10 genome above  
 24. Make sure you're using R > 4.0 ( module load r/4.1.3 ) 
