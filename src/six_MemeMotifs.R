@@ -55,7 +55,7 @@ summit_files <- list.files( path = getwd(), pattern = ".peakSummits.bed",
                             full.names = TRUE )
 
 # start output bash script to run
-sink( file = "04-1_bedops_rangePad.sh", append = FALSE, type = "output", split = FALSE )
+sink( file = "four-one_bedops_rangePad.sh", append = FALSE, type = "output", split = FALSE )
 cat(paste("#!/bin/bash"))
 cat(paste("\n"))
 
@@ -76,7 +76,7 @@ for(current_file_num in 1:length(summit_files)) {
 sink()
 
 # run the bedops scrips
-system("bash ./04-1_bedops_rangePad.sh")
+system("bash ./four-one_bedops_rangePad.sh")
 
 
 # for all the padded summit files, run getFasta to generate file for meme
@@ -84,7 +84,7 @@ padded_files <- list.files( path = getwd(), pattern = ".paddedSummit.bed",
                             full.names = TRUE )
 
 # start output bash script to run
-sink( file = "04-2_bedtools_getFasta.sh", append = FALSE, type = "output", split = FALSE )
+sink( file = "four-two_bedtools_getFasta.sh", append = FALSE, type = "output", split = FALSE )
 cat(paste("#!/bin/bash"))
 cat(paste("\n"))
 
@@ -105,4 +105,4 @@ for(current_file_num in 1:length(padded_files)) {
 sink()
 
 # run the bedtools script
-system("bash ./04-2_bedtools_getFasta.sh")
+system("bash ./four-two_bedtools_getFasta.sh")
