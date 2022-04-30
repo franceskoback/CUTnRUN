@@ -16,7 +16,7 @@ For all of these steps, you will need to run the python script for the step, and
 8. run four_Annotation.py as shown below 
 9. make sure you have all packages downloaded in R (ChIPseeker,TxDb.Mmusculus.UCSC.mm10.knownGene, clusterProfiler,ReactomePA,tidyverse,ggupset, ggimage)
 10. change working directory in four_Annotation.R : setwd("/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/three_calledpeaks")
-11. run "Rscript 04_Annotation.R" this will generate plots in the directory above. 
+11. module load CBI r/4.1.3 , then run "Rscript 04_Annotation.R" this will generate plots in the directory above. 
 12. To move them to a new folder called "four_ChIPSeeker", run bash script four_moveplots.sh 
 13. On initial run, to make a Homer folder in your software directory (or wherever you want to have it downloaded), navigate to that software folder and type wet http://homer.ucsd.edu/homer/configureHomer.pl
 14. perl configureHomer.pl -install 
