@@ -10,7 +10,7 @@ from tabulate import tabulate
 normalized_beds_folder	= sys.argv[1]
 output_folder = sys.argv[2]
 
-os.chdir( normalized_beds_folder )
+
 # create output directories if don't exist
 if not os.path.exists(output_folder):
 	os.makedirs(output_folder)
@@ -21,6 +21,8 @@ def add_chr_to_bed_file(file_path):
     df.to_csv(file_path, sep='\t',header=None,index=False)
 
 # iterate through all file
+path = os.path.join(normalized_beds_folder,"/relaxed")
+os.chdir( path )
 for file in os.listdir():
     # Check whether file is in text format or not
     if file.endswith("relaxed.bed") | file.endswith("stringent.bed"):
@@ -29,7 +31,18 @@ for file in os.listdir():
         # call read text file function
         add_chr_to_bed_file(file_path)
 
-
+# iterate through all file
+path = os.path.join(normalized_beds_folder,"/stringent")
+os.chdir( path )
+for file in os.listdir():
+    # Check whether file is in text format or not
+    if file.endswith("relaxed.bed") | file.endswith("stringent.bed"):
+        file_path = f"{normalized_beds_folder}/{file}"
+  
+        # call read text file function
+        add_chr_to_bed_file(file_path)
+	
+	
 # Move to the output folder
 os.chdir( output_folder )
 
