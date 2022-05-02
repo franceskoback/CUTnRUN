@@ -5,10 +5,12 @@ This repo will contain the code needed to run the CUT&RUN pipeline. Currently in
 
 For all of these steps, you will need to run the python script for the step, and then run the associated bash script that python script generates before moving onto the next step in the pipeline.
 
+To start with fastqs, use scripts 1 and 2. These are run on each set of paired fastqs until you get a list of sorted bedgraphs, then proceed with the steps below.
+
 ### Steps to Install: ##
 1. Git clone this repository 
 2. make results and data directories within this folder 
-3. copy your data (bedgraphs) into this repository or know where it is (cp -r /path/to/data ./data within this repo folder)
+3. copy your data (.sorted.bedGraphs) into this repository or know where it is (cp -r /path/to/data ./data within this repo folder)
 4. Run 3rd python script 
 5. nano that bash script output and put #!/usr/bin/env bash on top of bash script if submitting as job 
 6. Rename 03_SEACRcall.sh to three_SEACRcall.sh if submitting as a job-- DONE change this to be three, four, etc instead of starting with numbers
