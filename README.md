@@ -8,7 +8,7 @@ For all of these steps, you will need to run the python script for the step, and
 ### Steps to Install: ##
 1. Git clone this repository 
 2. make results and data directories within this folder 
-3. copy your data into this repository or know where it is (cp -r /path/to/data ./data within this repo folder)
+3. copy your data (bedgraphs) into this repository or know where it is (cp -r /path/to/data ./data within this repo folder)
 4. Run 3rd python script 
 5. nano that bash script output and put #!/usr/bin/env bash on top of bash script if submitting as job 
 6. Rename 03_SEACRcall.sh to three_SEACRcall.sh if submitting as a job-- DONE change this to be three, four, etc instead of starting with numbers
