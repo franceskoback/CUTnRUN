@@ -52,7 +52,7 @@ script_name = "one_cut_n_run_" +sample_id+ "_trim_align.sh"
 output_script = open( script_name, 'w' )
 
 # load necessary modules 
-output_command = "loading necessary modules : \""
+output_command = "echo \"loading necessary modules" + "\""
 output_script.write(output_command)
 output_script.write("\n")
 
@@ -85,7 +85,7 @@ output_script.write("\n")
 # align the reads with bowtie2
 # bwa aln -q10 -t8 hg18 reads_1.fastq > 1.sai
 # bowtie2 -p 8 -x mm10 -1 out_1.fq  -2 out_2.fq | samtools view -@ 10 -Sb -o bowtie2.bam 1>1.txt 2>2.txt 
-output_command = "bowtie2 -p" +num_cores+ " -x" +index+ " -1 " + read1_fq_gz + " -2 " +read2_fq_gz+ " | samtools view -@ 10 -Sb -o " +aligned_folder+ "/" +sample_id+  "1>1.txt 2>2.txt" 
+output_command = "bowtie2 -p" +num_cores+ " -x" +index+ " -1 " + read1_fq_gz + " -2 " +read2_fq_gz+ " | samtools view -@ 10 -Sb -o " +aligned_folder+ "/" +sample_id+  "_Aligned_Filtered.bam 1>1.txt 2>2.txt" 
 output_script.write(output_command)
 output_script.write("\n")
 
