@@ -5,9 +5,15 @@ This repo will contain the code needed to run the CUT&RUN pipeline. Currently in
 
 For all of these steps, you will need to run the python script for the step, and then run the associated bash script that python script generates before moving onto the next step in the pipeline.
 
-To start with fastqs, use scripts 1 and 2. These are run on each set of paired fastqs until you get a list of sorted bedgraphs, then proceed with the steps below.
+To start with fastqs, use scripts 1 and 2. If you already have sorted bedgraphs, skip to the "STARTING FROM 3:" Portion below. Else 
+1. Run python script one
+2. On first run, you'll need to make a bwa index, so do module load CBI bwa then do  bwa index /wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/data/index/mm10.fa (where mm10.fa is the reference genome you have downloaded. See below step 23 to see an example of how to download this) 
+3. 
 
-### Steps to Install: ##
+
+These are run on each set of paired fastqs until you get a list of sorted bedgraphs, then proceed with the steps below.
+
+### Steps to Install STARTING FROM 3: ##
 1. Git clone this repository 
 2. make results and data directories within this folder 
 3. copy your data (.sorted.bedGraphs) into this repository or know where it is (cp -r /path/to/data ./data within this repo folder)
