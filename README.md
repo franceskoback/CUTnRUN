@@ -55,7 +55,7 @@ To start with fastqs, use scripts 1 and 2. These are run on each set of paired f
 ## Steps of Analysis (and to-dos for development)
   
   - **Script 1**
-      - Trimming with trimmomatic ([CnRAP](https://star-protocols.cell.com/protocols/944#key-resources-table)) or TrimGalore([nf-core](https://nf-co.re/cutandrun))-- TBD. Wynton has TrimGalore module available)
+      - Trimming with trimmomatic ([CnRAP](https://star-protocols.cell.com/protocols/944#key-resources-table)) or TrimGalore([nf-core](https://nf-co.re/cutandrun))-- TBD. Wynton has TrimGalore module available). Modifying this workflow to make it use TrimGalore. The original script uses kseq to trim, but that is unneccessary with TrimGalore (Trimmomatic fails to trim reads containing 6 bp or less, which is why Kseq is used in conjunction with Trimmomatic. 
       - Alignment with [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
       - Filtering (removing unmapped reads and gathering sort, index, and alignment statistics): [samtools](http://www.htslib.org/)
     
