@@ -85,6 +85,7 @@ output_script.write("\n")
 # align the reads with bowtie2
 # bwa aln -q10 -t8 hg18 reads_1.fastq > 1.sai
 # bowtie2 -p 8 -x mm10 -1 out_1.fq  -2 out_2.fq | samtools view -@ 10 -Sb -o bowtie2.bam 1>1.txt 2>2.txt 
+# bowtie2 -x mm10 -1 cells_BRD4_dia_S3_R1_001.fastq.gz -2 cells_BRD4_dia_S3_R2_001.fastq.gz|samtools view -bS - > out.bam
 output_command = "bowtie2 -p" +num_cores+ " -x" +index+ " -1 " + read1_fq_gz + " -2 " +read2_fq_gz+ " | samtools view -@ 10 -Sb -o " +aligned_folder+ "/" +sample_id+  "_Aligned_Filtered.bam 1>1.txt 2>2.txt" 
 output_script.write(output_command)
 output_script.write("\n")
@@ -103,7 +104,7 @@ output_command = "echo \"Sort, Index, Alignment stats: " +sample_id+ "\""
 output_script.write(output_command)
 output_script.write("\n")
 # samtools sort -l 9 -O bam -@ " +num_cores+ " -o " +output_dir+ "" +sample_name+ ".sorted.bam " +output_dir+ "" +sample_name+ "Aligned.sortedByCoord.out.bam"
-output_command = "samtools sort -l 9 -O bam -n -@ " +num_cores+ " -o " +aligned_folder+ "/" +sample_id+ "_Aligned_Filtered.mappedSorted.bam " +aligned_folder+ "/" +sample_id+ "Aligned_Filtered.mapped.bam"
+output_command = "samtools sort -l 9 -O bam -n -@ " +num_cores+ " -o " +aligned_folder+ "/" +sample_id+ "_Aligned_Filtered.mappedSorted.bam " +aligned_folder+ "/" +sample_id+ "_Aligned_Filtered.mapped.bam"
 output_script.write(output_command)
 output_script.write("\n")
 # fixmates
