@@ -1,15 +1,16 @@
-# CUTnRUN Local Version
+# CUTnRUN Pipeline
 ## Bioinformatics Pipeline For CUT&RUN Analysis
 
-This repo will contain the code needed to run the CUT&RUN pipeline. Currently in development.
+This repo will contain the code needed to run the CUT&RUN pipeline. 
 
 For all of these steps, you will need to run the python script for the step, and then run the associated bash script that python script generates before moving onto the next step in the pipeline.
 ### Software Requirements: ###
-1. [Bwa](https://github.com/lh3/bwa) follow the instructions in that link to download bwa and make your reference index-- if you already have a .fa reference genome you can use, great! Find the path to that data. If not, you can download one doing something like this, for example to get the mm10.fa genome: wget http://hgdownload.cse.ucsc.edu/goldenpath/mm10/bigZips/mm10.fa.gz but make sure it's the right one that matches your data! 
-2. Once you have bwa downloaded and have a working genome .fa, you'll need to run the following command: **bwa index /path/to/genome.fa
-3. samtools -- wynton has this already 
-4. deeptools:  conda install -c bioconda deeptools
-5. bamtools: conda install -c bioconda bamtools ** for these, make sure your conda folder is in your path, ie export PATH="/your/path/to/miniconda3:$PATH"
+1. [TrimGalore](https://github.com/FelixKrueger/TrimGalore) wrapper to apply adapter and quality trimming to fastq files -- wynton has this already 
+2. [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml) for aligning. Other pipelines use BWA & Stampy, but Bowtie2 seems to perform better and require fewer software tools to implement. 
+3. [samtools](http://www.htslib.org/download/) - wynton has this already 
+4. [bamtools](https://github.com/pezmaster31/bamtools) install with **conda install -c bioconda bamtools**  **for these, make sure your conda folder is in your path, ie export PATH="/your/path/to/miniconda3:$PATH"**
+5. [deeptools](https://deeptools.readthedocs.io/en/develop/) **conda install -c conda-forge -c bioconda deeptools** 
+6. [Bwa](https://github.com/lh3/bwa) follow the instructions in that link to download bwa and make your reference index by running the following command: **bwa index /path/to/genome.fa** 
 
 To start with fastqs, use scripts 1 and 2. If you already have sorted bedgraphs, skip to the "STARTING FROM SORTED BEDGRAPHS:" Portion below. Else 
 ### on FIRST GO: ### 
@@ -53,10 +54,9 @@ These are run on each set of paired fastqs until you get a list of sorted bedgra
 
 
 ## Usage example: ##
-- python3 **one_cut_n_run_pairedReads_filter_align.py** "cells_FLAG_S4" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R1_001.fastq" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/cells_FLAG_S4_R2_001.fastq" 8 "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results"
-- python3 **two_cut_n_run_bamToBed_normalize_SEACRPrepv1.py** "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/results_2_normalizedbeds" "/Users/fkoback/Documents/Projects/Arun/CUTnRUN/CnRAP/cutNrun_fastq_jan2022/mm10.chrom.sizes.txt"
-- python **three_SEACR.py** "/Users/fkoback/software/SEACR/SEACR_1.3.sh" "/Users/fkoback/Documents/Projects/CUTnRUN/data"  "/Users/fkoback/Documents/Projects/CUTnRUN/three_calledpeaks" "y"
-- **or** python **three_SEACR.py** "/wynton/home/srivastava/franceskoback/software/SEACR/SEACR_1.3.sh" "/wynton/group/gladstone/users/franceskoback/CUTnRUN/data"  "/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/3_calledpeaks" "y"
+- python **one_Align_wynton.py** "cells_BRD4_dia" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/data/cells_BRD4_dia_S3_R1_001.fastq.gz" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/data/cells_BRD4_dia_S3_R2_001.fastq.gz" 8 "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/one_aligned" mm10
+- python **two_Normalize.py** "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/one_aligned" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/two_normalize" 
+- python **three_SEACR.py** "/wynton/home/srivastava/franceskoback/software/SEACR/SEACR_1.3.sh" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/two_normalize" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks" "n"
 - python **four_Annotation.py** "/Users/fkoback/Documents/Projects/CUTnRUN/results/three_calledpeaks"
 - or python **four_Annotation.py** "/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/three_calledpeaks"
 
