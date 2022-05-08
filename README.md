@@ -11,7 +11,7 @@ For all of these steps, you will need to run the python script for the step, and
 4. [bamtools](https://github.com/pezmaster31/bamtools) install with **conda install -c bioconda bamtools**  **for these, make sure your conda folder is in your path, ie export PATH="/your/path/to/miniconda3:$PATH"**
 5. [deeptools](https://deeptools.readthedocs.io/en/develop/) **conda install -c conda-forge -c bioconda deeptools** 
 6. [Bwa](https://github.com/lh3/bwa) follow the instructions in that link to download bwa and make your reference index by running the following command: **bwa index /path/to/genome.fa** 
-7. Make sure you have all required packages installed in R (ChIPseeker,TxDb.Mmusculus.UCSC.mm10.knownGene, clusterProfiler,ReactomePA,tidyverse,ggupset, ggimage)
+7. Make sure you have all required packages installed in R (**ChIPseeker,TxDb.Mmusculus.UCSC.mm10.knownGene, clusterProfiler,ReactomePA,tidyverse,ggupset, ggimage**)
 8. [Homer](http://homer.ucsd.edu/homer/) To download this, make a Homer folder in your software directory (or in whatever location you want to have Homer downloaded). Then navigate to that folder and type **wet http://homer.ucsd.edu/homer/configureHomer.pl** , **perl configureHomer.pl -install, PATH=$PATH:/wynton/home/srivastava/franceskoback/software/Homer/.//bin/** ,then once you have Homer added to your path, install the relevant genome, ie  **perl /wynton/home/srivastava/franceskoback/software/Homer/.//configureHomer.pl -install mm10**
 9. 
 
