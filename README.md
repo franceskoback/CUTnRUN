@@ -34,8 +34,8 @@ where chr is a number, without "chr" appended. To add this "chr" to make the fil
 14. Change working directory in four_Annotation.R: setwd("/your/path/to/results/three_calledpeaks") four_Annotation.R 
 15. Make sure you're using R> 4.0 module load r/4.1.3 then run **Rscript four_Annotation.R** 
 16. The four_Annotation.py python script will also output a bash script in your results/four__ChIPSeeker folder that will move all plots generated in the previous step into folders to clean up your directory. So once you've run four_Annotation.R, go to results/four__ChIPSeeker and run **bash four_moveplots.sh**
-17. Run 5th python script 
-18. Run 6th R script 
+17. Run 5th python script as shown in the usage example below
+18. Run 6th R script as shown in the usage example elow 
 
 
 These are run on each set of paired fastqs until you get a list of sorted bedgraphs, then proceed with the steps below.
