@@ -1,10 +1,11 @@
 # import packages required
+#!/usr/bin/python
 import os
 from os import listdir
 import sys
 import numpy as np
 import pandas as pd
-from tabulate import tabulate # python3 -m pip install tabulate
+from tabulate import tabulate
 
 # define function to round scaling factors - coz there isnt a built in way?
 def truncate(number, decimals=0):
@@ -14,7 +15,6 @@ def truncate(number, decimals=0):
 # read in input arguments that are required
 aligned_bams_folder		= sys.argv[1] # where the aligned bams are saved <path>/01_read_trimming_alignment/
 normalized_beds_folder	= sys.argv[2] # where to dump the pocessed bed files which ar ready for SEACR <path>/02_bam_processing_v1
-chrom_sizes_txt			= sys.argv[3] # path and name of the chormosome sizes text file needed for the bed conversion <path>/hg38.chrom.sizes
 
 # folders/programs to be used for initializing the script
 bamToBed_folder			=	normalized_beds_folder+ "/bed_converted_bams/"
@@ -35,7 +35,7 @@ os.chdir( aligned_bams_folder )
 
 # figure out which are the mapped stats files to pull out the number of mapped reads
 mapped_stats_files = []
-for file_name in listdir():
+for file_name in os.listdir(os.getcwd()):
 	if file_name.endswith("mappedStats.txt"):
 		mapped_stats_files.append(file_name)
 # sort them alphabetically
@@ -50,7 +50,7 @@ print(mapped_stats_files)
 
 # figure out which are the bam files to convert and normalize - need full paths
 mapped_sorted_bam_files = []
-for file_name in listdir():
+for file_name in os.listdir(os.getcwd()):
 	if file_name.endswith("Aligned_Filtered.mappedSorted.bam"):
 		mapped_sorted_bam_files.append(aligned_bams_folder+ "/" +file_name)
 # sort alphabetically
@@ -87,7 +87,7 @@ else:
 # Move to the folder with the saved bam and stats files
 os.chdir( bamToBed_folder )
 # write the file of the mapped reads and normalization factors for future reference
-reads_norm_factor_file = open('999_mapped_num_reads_per_file_norm_factor.txt', 'w')
+reads_norm_factor_file = open('mapped_num_reads_per_file_norm_factor.txt', 'w')
 reads_norm_factor_file.write(tabulate(mapped_stats_files))
 reads_norm_factor_file.write(tabulate(mapped_reads_per_file))
 reads_norm_factor_file.close()
@@ -106,12 +106,14 @@ output_script = open( script_name, 'w' )
 
 # convert each bam to a bed file as recommended by https://github.com/FredHutch/SEACR
 for sample_counter in range(len(mapped_sorted_bam_files)):
-	output_command = "echo \"converting and normlaizing : " +mapped_sorted_bam_files[sample_counter].split("/")[-1][:-4]+ "\""
+	output_command = "echo \"converting and normalizing : " +mapped_sorted_bam_files[sample_counter].split("/")[-1][:-4]+ "\""
 	output_script.write(output_command)
 	output_script.write("\n")
 	# convert bam to bed using bedpe flag - pull out only proper paired reads and then create bedgraph of everything so as to allow scaling of reads!
-	output_command = "samtonormalized.bedols view -b -f 2 -F 524 " +mapped_sorted_bam_files[sample_counter]+ " | bedtools genomecov -bg -scale " +str( truncate(mapped_reads_per_file[sample_counter][2], 2) )+ " -ibam stdin > " +normalized_beds_folder+ "/" +mapped_sorted_bam_files[sample_counter].split("/")[-1][:-3]+ "normalized.bed 2> " +logs_folder+ "" +mapped_sorted_bam_files[sample_counter].split("/")[-1][:-3]+ "normalize.err"
+	output_command = "samtools view -b -f 2 -F 524 " +mapped_sorted_bam_files[sample_counter]+ " | bedtools genomecov -bg -scale " +str( truncate(mapped_reads_per_file[sample_counter][2], 2) )+ " -ibam stdin > " +normalized_beds_folder+ "/" +mapped_sorted_bam_files[sample_counter].split("/")[-1][:-3]+ "normalized.bed 2> " +logs_folder+ "" +mapped_sorted_bam_files[sample_counter].split("/")[-1][:-3]+ "normalize.err"
 	output_script.write(output_command)
+	#output_command = "samtonormalized.bedols view -b -f 2 -F 524 " +mapped_sorted_bam_files[sample_counter]+ " | bedtools genomecov -bg -scale " +str( truncate(mapped_reads_per_file[sample_counter][2], 2) )+ " -ibam stdin > " +normalized_beds_folder+ "/" +mapped_sorted_bam_files[sample_counter].split("/")[-1][:-3]+ "normalized.bed 2> " +logs_folder+ "" +mapped_sorted_bam_files[sample_counter].split("/")[-1][:-3]+ "normalize.err"
+	#output_script.write(output_command)
 	
 	output_script.write("\n\n\n")
 
@@ -120,3 +122,4 @@ output_script.close()
 
 # make script executable
 os.system("chmod +x " +script_name)
+
