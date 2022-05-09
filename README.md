@@ -77,8 +77,8 @@ These are run on each set of paired fastqs until you get a list of sorted bedgra
 - **bash two_cut_n_run_bamToBed_normalize.sh**
 - python **three_SEACR.py** "/wynton/home/srivastava/franceskoback/software/SEACR/SEACR_1.3.sh" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/two_normalize" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks" "n"
 - **bash three_SEACRcall.sh**
-- python **four_Annotation.py** "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks"
-- module load r/4.1.3 , then **Rscript four_Annotation.R**
+- python **four_Annotation.py** "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/four_ChIPSeeker"
+- module load r/4.1.3 then run **Rscript four_Annotation.R**
 - or **python five_HomerMotifs.py** "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks "relaxed.bed" "/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/five_HomerMotifs"
 - Run **Rscript six_MemeMotifs.R**
 
