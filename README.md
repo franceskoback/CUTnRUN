@@ -13,7 +13,7 @@ For all of these steps, you will need to run the python script for the step, and
 6. [Bwa](https://github.com/lh3/bwa) follow the instructions in that link to download bwa and make your reference index by running the following command: **bwa index /path/to/genome.fa** 
 7. Make sure you have all required packages installed in R (**ChIPseeker,TxDb.Mmusculus.UCSC.mm10.knownGene, clusterProfiler,ReactomePA,tidyverse,ggupset, ggimage**)
 8. [Homer](http://homer.ucsd.edu/homer/) To download this, make a Homer folder in your software directory (or in whatever location you want to have Homer downloaded). Then navigate to that folder and type **wet http://homer.ucsd.edu/homer/configureHomer.pl** , **perl configureHomer.pl -install, PATH=$PATH:/your/path/to/Homer/.//bin/** ,then once you have Homer added to your path, install the relevant genome, ie  **perl /wynton/home/srivastava/franceskoback/software/Homer/.//configureHomer.pl -install mm10**
-9. 
+9. [Bedops](https://bedops.readthedocs.io/en/latest/content/installation.html)
 
 To start with fastqs, use scripts 1 and 2. If you already have sorted bedgraphs, skip to the "STARTING FROM SORTED BEDGRAPHS:" Portion below. Else 
 ### STARTING FROM PAIRED FASTQS: ### 
@@ -25,7 +25,7 @@ To start with fastqs, use scripts 1 and 2. If you already have sorted bedgraphs,
 9. **Repeat steps 1-8 for every set of paired fastq data you wish to run. Then, once you have a bunch of "...Aligned_Filtered.mappedSorted.normalized.bed" files in your results/two_normalize folder, move on to the portion below. Alternatively, if you already have sorted bedgraphs, skip to the step below** 
 
 ### STARTING FROM SORTED BEDGRAPHS/ Pipeline Continued : ### 
-11. Run python script three following the format in the "Usage example" portion of the readme below. This will output a bash script in your three_calledpeaks folder that you will then run to do the first step in this pipeline, ie **bash three_SEACRcall.sh** or if submitting as a job, **qsub -cwd -pe smp 12 -l mem_free=12G -l scratch=1000G -l h_rt=50:00:00 -m bea -M frances.koback@gladstone.ucsf.edu three_SEACRcall.sh** This will take your normalized bedgraphs, sort them, and makes coverage files before running [SEACR](https://github.com/FredHutch/SEACR) to call peaks. 
+11. Run python script three following the format in the "Usage example" portion of the readme below. This will output a bash script in your three_calledpeaks folder that you will then run to do the first step in this pipeline, ie **bash three_SEACRcall.sh** or if submitting as a job, **qsub -cwd -pe smp 12 -l mem_free=12G -l scratch=1000G -l h_rt=50:00:00 -m bea -M frances.koback@gladstone.ucsf.edu three_SEACRcall.sh** 
 13.The SEACR output data structure is: 
 ```
 <chr>	<start>	<end>	<total signal>	<max signal>	<max signal region>
@@ -41,47 +41,19 @@ where chr is a number, without "chr" appended. To add this "chr" to make the fil
 
 These are run on each set of paired fastqs until you get a list of sorted bedgraphs, then proceed with the steps below.
 
-### Steps to Install STARTING FROM 3: ##
-1. Git clone this repository 
-2. make results and data directories within this folder 
-3. copy your data (.sorted.bedGraphs) into this repository or know where it is (cp -r /path/to/data ./data within this repo folder)
-4. Run 3rd python script 
-5. nano that bash script output and put #!/usr/bin/env bash on top of bash script if submitting as job 
-6. Rename 03_SEACRcall.sh to three_SEACRcall.sh if submitting as a job-- DONE change this to be three, four, etc instead of starting with numbers
-7. qsub -cwd -pe smp 12 -l mem_free=12G -l scratch=1000G -l h_rt=50:00:00 -m bea -M frances.koback@gladstone.ucsf.edu three_SEACRcall.sh
-8. run four_Annotation.py as shown below 
-9. make sure you have all packages downloaded in R (ChIPseeker,TxDb.Mmusculus.UCSC.mm10.knownGene, clusterProfiler,ReactomePA,tidyverse,ggupset, ggimage)
-10. change working directory in four_Annotation.R : setwd("/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/three_calledpeaks")
-11. module load CBI r/4.1.3 , then run "Rscript 04_Annotation.R" this will generate plots in the directory above. 
-12. To move them to a new folder called "four_ChIPSeeker", run bash script four_moveplots.sh 
-13. On initial run, to make a Homer folder in your software directory (or wherever you want to have it downloaded), navigate to that software folder and type wet http://homer.ucsd.edu/homer/configureHomer.pl
-14. perl configureHomer.pl -install 
-15. PATH=$PATH:/wynton/home/srivastava/franceskoback/software/Homer/.//bin/
-16. perl /wynton/home/srivastava/franceskoback/software/Homer/.//configureHomer.pl -install mm10
-18. run 5th python script 
-19. bash five_cut_n_run_homer_motifs_v1beds.sh
-20. on wynton, do module load CBI bedops 
-21. mkdir six_MemeMotifs in results folder 
-22. go to three_calledpeaks and make relaxed and stringent folders then do mv *.relaxed.bed ./relaxed and mv *.stringent.bed ./stringent-- DONE make this automatically happen after running third step 
-23. go to your data folder and do wget http://hgdownload.cse.ucsc.edu/goldenpath/mm10/bigZips/mm10.fa.gz to download the mm10.fa genome  
-24. navigate to 6th script in src folder and nano to change the path names at the top of the Rscript to match your paths-- including the path to the mm10 genome above  
-25. Make sure you're using R > 4.0 ( module load r/4.1.3 ) 
-26. Rscript 06_MemeMotifs.R (DONE: make this six_MemeMotifs.R)
-
-
-
 
 ## Usage example: ##
 - python **one_Align_wynton.py** "cells_BRD4_dia" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/data/cells_BRD4_dia_S3_R1_001.fastq.gz" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/data/cells_BRD4_dia_S3_R2_001.fastq.gz" 8 "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/one_aligned" mm10
 - **bash one_cut_n_run_cells_BRD4_dia_trim_align.sh** from within your one/aligned folder 
 - python **two_Normalize.py** "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/one_aligned" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/two_normalize" 
-- **bash two_cut_n_run_bamToBed_normalize.sh**
+- **bash two_cut_n_run_bamToBed_normalize.sh** from within your results/two_normalize folder
 - python **three_SEACR.py** "/wynton/home/srivastava/franceskoback/software/SEACR/SEACR_1.3.sh" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/two_normalize" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks" "n"
-- **bash three_SEACRcall.sh**
+- **bash three_SEACRcall.sh** from within your results/three_calledpeaks folder
 - python **four_Annotation.py** "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/four_ChIPSeeker"
 - module load r/4.1.3 then **Change working directory in four_Annotation.R: setwd("/your/path/to/results/three_calledpeaks")** run **Rscript four_Annotation.R**
-- or **python five_HomerMotifs.py** "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks "relaxed.bed" "/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/five_HomerMotifs"
-- Run **Rscript six_MemeMotifs.R**
+- **bash four_moveplots.sh** from within your results/four_ChIPSeekr folder
+- **python five_HomerMotifs.py** "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks "relaxed.bed" "/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/five_HomerMotifs"
+- Run **Rscript six_MemeMotifs.R** **Change path names in R script to match your environment**
 
 ## Steps of Analysis Explained
   
@@ -91,12 +63,12 @@ These are run on each set of paired fastqs until you get a list of sorted bedgra
       - Filtering (removing unmapped reads and gathering sort, index, and alignment statistics): [samtools](http://www.htslib.org/)
     
   - **Script 2**
-      - Bams to Bedgraphs 
+      - Converts bams to bedgraphs 
       - Optional normalization to spike-in genome
 
 
   - **Script 3**
-      - Call [SEACR](https://github.com/FredHutch/SEACR)
+      - Takes your normalized bedgraphs, sorts them, and makes coverage files before running [SEACR](https://github.com/FredHutch/SEACR) to call peaks. 
       - **Argument 1**: path to SEACR
       - **Argument 2**: path to data folder containing bedgraphs
       - **Argument 3**: path to folder where you want to store your results (and bash script this python script generates)
@@ -112,7 +84,6 @@ These are run on each set of paired fastqs until you get a list of sorted bedgra
       - **Note**: make sure beds are in correct Homer format. The script "check_bed_format.py" makes sure the bed files are tab-delimited and allows you to change them to be tab-delimited if they are space delimited instead
 
   - **Script 6: Meme Motifs**
-      - **Download Bedops** https://bedops.readthedocs.io/en/latest/content/installation.html
       - **Note**: change path names in R script to match your environment 
 
 Polishing in progress to make it reproducible in other compute environments!  
