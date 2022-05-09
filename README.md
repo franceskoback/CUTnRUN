@@ -30,10 +30,10 @@ To start with fastqs, use scripts 1 and 2. If you already have sorted bedgraphs,
 ```
 <chr>	<start>	<end>	<total signal>	<max signal>	<max signal region>
 ```
-where chr is a number, without "chr" appended. To add this "chr" to make the files compatible with further analysis, **run four_Annotation.py as shown in the "Usage example" below**-- **this will modify your bed files so be sure about this step before you run! Ie do not run this twice!!** SEACR output data structure has just numbers in the first column of the bed, corresponding to chromosome number. The resulting bed files from this will have "chr" appended in the chromosome column to match the format required for the subsequent analyses in R. This will also output a bash script that will move all plots generated in step 11 below into folders to clean up your directory. 
+where chr is a number, without "chr" appended. To add this "chr" to make the files compatible with further analysis, **run four_Annotation.py as shown in the "Usage example" below**-- **this will modify your bed files so be sure about this step before you run! Ie do not run this twice!!** 
 14. Change working directory in four_Annotation.R: setwd("/your/path/to/results/three_calledpeaks") four_Annotation.R 
-15. Make sure you're using R> 4.0 module load r/4.1.3 then run 
-16. Run bash script outputted in step 10, ie **bash 
+15. Make sure you're using R> 4.0 module load r/4.1.3 then run **Rscript four_Annotation.R** 
+16. The four_Annotation.py python script will also output a bash script in your results/four__ChIPSeeker folder that will move all plots generated in the previous step into folders to clean up your directory. So once you've run four_Annotation.R, go to results/four__ChIPSeeker and run **bash four_moveplots.sh**
 17. Run 5th python script 
 18. Run 6th R script 
 
