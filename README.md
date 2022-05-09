@@ -16,15 +16,15 @@ For all of these steps, you will need to run the python script for the step, and
 9. 
 
 To start with fastqs, use scripts 1 and 2. If you already have sorted bedgraphs, skip to the "STARTING FROM SORTED BEDGRAPHS:" Portion below. Else 
-### on FIRST GO: ### 
+### STARTING FROM PAIRED FASTQS: ### 
 1. Git clone this repository 
 2. make results and data directories within this folder (mkdir results, mkdir data)
 3. copy your paired fastq data into this repository (..R1_001.fastq.gz and R2_001.fastq.gz or something similar) or cp -r /path/to/data ./data within this repo folder)
-5. Run python script one following the format in the "Usage example" portion of the readme below. This will output a bash script in your results/one_aligned folder that you will then run to do the first step in this pipeline, ie **bash one_cut_n_run_cells_BRD4_dia_trim_align.sh** **NOTE: Sometimes this alignment will output data that contains lines of the form: chr1_GL456221_random, chr4_JH584293_random, etc. In order to fix this issue, and get rid of any lines that did not align to  chromomes properly, in your results/one_aligned folder:  samtools view -o out.bam in.bam `seq 1 21 | sed 's/^/chr/'`**  where 1 and 21 correspond to the mouse genome chromosome numbers. 
+5. Run python script one and associated bash script following the format in the "Usage example" portion of the readme below. This will output a bash script in your results/one_aligned folder that you will then run to do the first step in this pipeline, ie **bash one_cut_n_run_cells_BRD4_dia_trim_align.sh** **NOTE: Sometimes this alignment will output data that contains lines of the form: chr1_GL456221_random, chr4_JH584293_random, etc. In order to fix this issue, and get rid of any lines that did not align to  chromomes properly, in your results/one_aligned folder:  samtools view -o out.bam in.bam `seq 1 21 | sed 's/^/chr/'`**  where 1 and 21 correspond to the mouse genome chromosome numbers. 
 8. Run python script two following the format in the "Usage example" portion of the readme below. This will output a bash script in your results/two_normalize folder that you will then run to do the first step in this pipeline, ie **bash two_cut_n_run_bamToBed_normalize.sh** 
 9. **Repeat steps 1-8 for every set of paired fastq data you wish to run. Then, once you have a bunch of "...Aligned_Filtered.mappedSorted.normalized.bed" files in your results/two_normalize folder, move on to the portion below. Alternatively, if you already have sorted bedgraphs, skip to the step below** 
 
-### Starting from Sorted Bedgraphs/ Pipeline Continued : ### 
+### STARTING FROM SORTED BEDGRAPHS/ Pipeline Continued : ### 
 11. Run python script three following the format in the "Usage example" portion of the readme below. This will output a bash script in your three_calledpeaks folder that you will then run to do the first step in this pipeline, ie **bash three_SEACRcall.sh** or if submitting as a job, **qsub -cwd -pe smp 12 -l mem_free=12G -l scratch=1000G -l h_rt=50:00:00 -m bea -M frances.koback@gladstone.ucsf.edu three_SEACRcall.sh** This will take your normalized bedgraphs, sort them, and makes coverage files before running [SEACR](https://github.com/FredHutch/SEACR) to call peaks. 
 13.The SEACR output data structure is: 
 ```
@@ -72,22 +72,20 @@ These are run on each set of paired fastqs until you get a list of sorted bedgra
 
 ## Usage example: ##
 - python **one_Align_wynton.py** "cells_BRD4_dia" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/data/cells_BRD4_dia_S3_R1_001.fastq.gz" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/data/cells_BRD4_dia_S3_R2_001.fastq.gz" 8 "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/one_aligned" mm10
+- **bash one_cut_n_run_cells_BRD4_dia_trim_align.sh** from within your one/aligned folder 
 - python **two_Normalize.py** "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/one_aligned" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/two_normalize" 
+- **bash two_cut_n_run_bamToBed_normalize.sh**
 - python **three_SEACR.py** "/wynton/home/srivastava/franceskoback/software/SEACR/SEACR_1.3.sh" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/two_normalize" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks" "n"
-- python **four_Annotation.py** "/Users/fkoback/Documents/Projects/CUTnRUN/results/three_calledpeaks"
-- or python **four_Annotation.py** "/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/three_calledpeaks"
+- **bash three_SEACRcall.sh**
+- python **four_Annotation.py** "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks"
+- module load r/4.1.3 , then **Rscript four_Annotation.R**
+- or **python five_HomerMotifs.py** "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks "relaxed.bed" "/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/five_HomerMotifs"
+- Run **Rscript six_MemeMotifs.R**
 
-- run **four_Annotation.R**
-
-- python **five_HomerMotifs.py** /Users/fkoback/Documents/Projects/CUTnRUN/results_3_calledpeaks/relaxed_beds relaxed.bed /Users/fkoback/Documents/Projects/CUTnRUN/05_homer_peak_motifs
-- or **python five_HomerMotifs.py** /wynton/group/gladstone/users/franceskoback/CUTnRUN/results/three_calledpeaks "relaxed.bed" /wynton/group/gladstone/users/franceskoback/CUTnRUN/results/five_HomerMotifs
-
-- Run **six_MemeMotifs.R**
-
-## Steps of Analysis (and to-dos for development)
+## Steps of Analysis Explained
   
   - **Script 1**
-      - Trimming with trimmomatic ([CnRAP](https://star-protocols.cell.com/protocols/944#key-resources-table)) or TrimGalore([nf-core](https://nf-co.re/cutandrun))-- TBD. Wynton has TrimGalore module available). Modifying this workflow to make it use TrimGalore. The original script uses kseq to trim, but that is unneccessary with TrimGalore (Trimmomatic fails to trim reads containing 6 bp or less, which is why Kseq is used in conjunction with Trimmomatic. 
+      - Trimming with TrimGalore([nf-core](https://nf-co.re/cutandrun))-- TBD. Wynton has TrimGalore module available). The [CnRAP](https://star-protocols.cell.com/protocols/944#key-resources-table) pipeline uses trimmomatic and  uses kseq to trim, but kseq is unneccessary with TrimGalore (Trimmomatic fails to trim reads containing 6 bp or less, which is why Kseq is used in conjunction with Trimmomatic.) 
       - Alignment with [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
       - Filtering (removing unmapped reads and gathering sort, index, and alignment statistics): [samtools](http://www.htslib.org/)
     
@@ -102,6 +100,7 @@ These are run on each set of paired fastqs until you get a list of sorted bedgra
       - **Argument 2**: path to data folder containing bedgraphs
       - **Argument 3**: path to folder where you want to store your results (and bash script this python script generates)
       - **Argument 4**: "y" or "n"-- "y" if there is an igg control 
+      - **Note**: If not using igg control, this script has a built-in manual threshold value of 0.1. To modify this threshlold, simply enter the python script and modify the value manually. 
 
   - **Script 4 Annotation**
       - **four_Annotation.py Argument 1**: path to data containing bed file outputs from SEACR (*relaxed.bed and *stringent.bed)
