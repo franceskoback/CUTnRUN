@@ -6,7 +6,7 @@ This repo will contain the code needed to run the CUT&RUN pipeline.
 For all of these steps, you will need to run the python script for the step, and then run the associated bash script that python script generates before moving onto the next step in the pipeline.
 ### Software Requirements: ###
 1. [TrimGalore](https://github.com/FelixKrueger/TrimGalore) wrapper to apply adapter and quality trimming to fastq files -- wynton has this already 
-2. [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml) for aligning. Other pipelines use BWA & Stampy, but Bowtie2 seems to perform better and require fewer software tools to implement. 
+2. [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml) for aligning. Other pipelines use BWA, but Bowtie2 seems to perform better and does not require Stampy after alignment. 
 3. [samtools](http://www.htslib.org/download/) - wynton has this already 
 4. [bamtools](https://github.com/pezmaster31/bamtools) install with **conda install -c bioconda bamtools**  **for these, make sure your conda folder is in your path, ie export PATH="/your/path/to/miniconda3:$PATH"**
 5. [deeptools](https://deeptools.readthedocs.io/en/develop/) **conda install -c conda-forge -c bioconda deeptools** 
