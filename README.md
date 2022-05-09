@@ -85,6 +85,6 @@ These are run on each set of paired fastqs until you get a list of sorted bedgra
 
   - **Script 6: Meme Motifs**
       - **Note**: change path names in R script to match your environment 
-
-Polishing in progress to make it reproducible in other compute environments!  
+      
+This pipeline was generated for use in a HPC environment such as wynton. To see the local version, navigate to [CUTnRUN_local](https://github.com/franceskoback/CUTnRUN_local) 
 
