@@ -25,13 +25,16 @@ To start with fastqs, use scripts 1 and 2. If you already have sorted bedgraphs,
 9. **Repeat steps 1-8 for every set of paired fastq data you wish to run. Then, once you have a bunch of "...Aligned_Filtered.mappedSorted.normalized.bed" files in your results/two_normalize folder, move on to the portion below. Alternatively, if you already have sorted bedgraphs, skip to the step below** 
 
 ### Starting from Sorted Bedgraphs/ Pipeline Continued : ### 
-11. Run python script three following the format in the "Usage example" portion of the readme below. This will output a bash script in your three_calledpeaks folder that you will then run to do the first step in this pipeline, ie **bash three_SEACRcall.sh** or if submitting as a job, **qsub -cwd -pe smp 12 -l mem_free=12G -l scratch=1000G -l h_rt=50:00:00 -m bea -M frances.koback@gladstone.ucsf.edu three_SEACRcall.sh** 
-12. Run four_Annotation.py as shown in the "Usage example" below-- **this will modify your bed files so be sure about this step before you run! Ie do not run this twice!!** SEACR output data structure has just numbers in the first column of the bed, corresponding to chromosome number. The resulting bed files from this will have "chr" appended in the chromosome column to match the format required for the subsequent analyses in R. This will also output a bash script that will move all plots generated in step 11 below into folders to clean up your directory. 
-13. Change working directory in four_Annotation.R: setwd("/your/path/to/results/three_calledpeaks") four_Annotation.R 
-14. Make sure you're using R> 4.0 module load r/4.1.3 then run 
-15. Run bash script outputted in step 10, ie **bash 
-16. Run 5th python script 
-17. Run 6th R script 
+11. Run python script three following the format in the "Usage example" portion of the readme below. This will output a bash script in your three_calledpeaks folder that you will then run to do the first step in this pipeline, ie **bash three_SEACRcall.sh** or if submitting as a job, **qsub -cwd -pe smp 12 -l mem_free=12G -l scratch=1000G -l h_rt=50:00:00 -m bea -M frances.koback@gladstone.ucsf.edu three_SEACRcall.sh** This will take your normalized bedgraphs, sort them, and makes coverage files before running [SEACR](https://github.com/FredHutch/SEACR) to call peaks. 
+13.The SEACR output data structure is: ```
+<chr>	<start>	<end>	<total signal>	<max signal>	<max signal region>
+```
+where chr is a number, without "chr" appended. To add this "chr" to make the files compatible with further analysis, **run four_Annotation.py as shown in the "Usage example" below**-- **this will modify your bed files so be sure about this step before you run! Ie do not run this twice!!** SEACR output data structure has just numbers in the first column of the bed, corresponding to chromosome number. The resulting bed files from this will have "chr" appended in the chromosome column to match the format required for the subsequent analyses in R. This will also output a bash script that will move all plots generated in step 11 below into folders to clean up your directory. 
+14. Change working directory in four_Annotation.R: setwd("/your/path/to/results/three_calledpeaks") four_Annotation.R 
+15. Make sure you're using R> 4.0 module load r/4.1.3 then run 
+16. Run bash script outputted in step 10, ie **bash 
+17. Run 5th python script 
+18. Run 6th R script 
 
 
 These are run on each set of paired fastqs until you get a list of sorted bedgraphs, then proceed with the steps below.
