@@ -52,7 +52,8 @@ These are run on each set of paired fastqs until you get a list of sorted bedgra
 - python **four_Annotation.py** "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks" "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/four_ChIPSeeker"
 - module load r/4.1.3 then **Change working directory in four_Annotation.R: setwd("/your/path/to/results/three_calledpeaks")** run **Rscript four_Annotation.R**
 - **bash four_moveplots.sh** from within your results/four_ChIPSeekr folder
-- **python five_HomerMotifs.py** "/wynton/group/gladstone/users/franceskoback/Projects/CUTnRUN/results/three_calledpeaks "relaxed.bed" "/wynton/group/gladstone/users/franceskoback/CUTnRUN/results/five_HomerMotifs"
+- **python five_HomerMotifs.py** /path/to/results/three_calledpeaks /path/to/results/five_HomerMotifs
+- **bash five_cut_n_run_homer_motifs_v1beds.sh** 
 - Run **Rscript six_MemeMotifs.R** **Change path names in R script to match your environment**
 
 ## Steps of Analysis Explained
